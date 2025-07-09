@@ -1,17 +1,16 @@
 
-
-
-
-docker run --name mysql-docker -p 3305:3306 -e MYSQL_ROOT_PASSWORD=docker -d mysql
-
-
+=====================: How to Run Postgres in a Docker Container :=======================
 
 docker run --name postgresql-docker -p 5431:5432 -e POSTGRES_PASSWORD=docker -d postgres
 
-docker exec -it postgresql-docker psql -U postgres
+docker exec -it container_name_or_id bash
+	EX: docker exec -it postgres-docker bash
+
+psql -U username -d database_name
+	EX: psql -U postgres -d postgres
 
 
-========================================================================================================
+=====================: How to Run MySQL in a Docker Container :=======================
 
 How to Run MySql in a Docker Container
 		
@@ -49,7 +48,28 @@ Steps
 Github - https://github.com/avetichamp/mysql-docker-starter
 ========================================================================================================
 
+=====================: Test DB in a Docker Container :=======================
 
+ Mysql queries
+	--View all available databases in mysql
+		show databases;
+	--Using a selected database
+	    use <database-name>
+	--create table
+		CREATE TABLE persons (
+	    personid int,
+	    lastname varchar(255),
+	    firstname varchar(255)
+	    );
+
+    -- to view tables
+       show tables;
+
+    -- Insert into table   
+		INSERT INTO persons (personid, lastname, FirstName) VALUES (1,'aveti','tutorial');
+		INSERT INTO persons (personid, lastname, firstname) VALUES (2,'John','Doe'); 
+
+========================================================================================================
 
 docker run -d -p 9090:9090 -e CONFIG_SERVER_URL=host.docker.internal -e EUREKA_SERVER_ADDRESS=http://host.docker.intern
 al:8761/eureka --name cloudgateway 501e44c2d737
